@@ -222,7 +222,7 @@
 
 .logo{
   height: auto;
-  width: clamp(100px, 18vw, 300px);
+  width: clamp(80px, 18vw, 300px);
 }
 
 .logo svg {
