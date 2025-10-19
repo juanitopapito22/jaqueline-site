@@ -1193,14 +1193,18 @@ h1 {
 
   /* Image stack (debajo, siempre visible) */
   .img-bottom {
-    width: clamp(180px, 56vw, 300px);
-    height: clamp(200px, 56vw, 320px);
+    width: clamp(140px, 52vw, 260px);
+    height: clamp(160px, 52vw, 270px);
   }
   .img-top {
     bottom: clamp(40px, 10vw, 110px);
     left: clamp(90px, 22vw, 150px);
-    width: clamp(180px, 56vw, 300px);
-    height: clamp(200px, 56vw, 320px);
+    width: clamp(140px, 50vw, 260px);
+    height: clamp(145px, 50vw, 260px);
+  }
+
+  .img-bottom {
+    width: clamp()
   }
 
   /* Panel de paths: en el flujo y oculto hasta abrir */
