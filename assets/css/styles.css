@@ -595,7 +595,7 @@ h1 {
   justify-content: center;
   font-size: clamp(0.8rem, 1vw, 1.2rem);
   color: #fff;
-  gap: 90px;
+  gap: calc(20px + 6vw);
   font-family: 'ablation', sans-serif;
   letter-spacing: 0.09em;
 }
@@ -615,10 +615,9 @@ h1 {
 
 .fabricantes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  width: 100%;
-  
-
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  width: 30%;
+  margin:auto;
 }
 .img-fabricantes {
   display: flex;
@@ -630,7 +629,7 @@ h1 {
 }
 
 .img-fabricantes img {
-  width: clamp(250px, 30vw, 500px);
+  width: 100%;
   height: auto;
   object-fit: contain;
   margin: 0 6px;
@@ -651,7 +650,7 @@ h1 {
 
 .miembro-equipo img{
   width: 72%;
-  height: clamp(320px, 50vh, 500px);
+  height: clamp(200px, 50vh, 550px);
   object-fit: cover;
   border-radius: 2px;
   margin: 50px auto 10px auto;
@@ -695,6 +694,7 @@ h1 {
   gap: clamp(90px, 10vw, 90px);
   grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr);
 }
+
 
 .image-box{
   background-image: url('/assets/imagenes/Diseño_personalizado_decoracion_habitacion_guaduales.png');                        /* color de espera */ /* cambia por tu imagen */
@@ -1109,4 +1109,101 @@ h1 {
 
 .contacto--space {
   margin-top: 80px;
+}
+
+
+
+.footer-copy--legal {
+  font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+  line-height: clamp(12px, 1.5vw, 20px);
+  margin-top: 40px;
+  color: inherit;
+}
+
+.privacy-brief {
+  text-align: center;
+  font-family: 'hero', sans-serif;
+  font-size: clamp(0.8rem, 1.5vw, 1.6rem);
+  margin: auto clamp(40px, 6vw, 90px);
+  margin-bottom: clamp(20px, 3vw, 40px);
+}
+.politica-de-privacidad {
+  margin: auto clamp(40px, 6vw, 90px);
+  font-size: clamp(0.8rem, 1.5vw, 4rem);
+  color: var(--fg);
+}
+
+.headlines--privacy {
+  text-align: left;
+  font-family: 'black-mango', sans-serif;
+  font-weight: normal;
+  font-size: clamp(0.7rem, 2.5vw, 2rem);
+  color: var(--fg);
+  margin-bottom: clamp(0.6rem, 2vw, 4rem);
+  margin-top: clamp(1.2rem, 3vw, 6rem);
+}
+
+.container-privacy {
+  
+  margin: auto;
+  font-family: 'hero', sans-serif;
+  font-size: clamp(0.7rem, 1.5vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--fg);
+}
+
+@media (max-width: 768px) {
+
+  .logo {
+    width: clamp(60px, 20vw, 180px);
+  }
+  .logo svg {
+    width: clamp(150px, 25vw, 200px);
+  }
+  .servicios-grid {
+    grid-template-columns: 10vw auto 10vw;
+    gap: 10px;
+  }
+
+  .image-box {
+    height: clamp(140px, 35vw, 300px);
+    border-radius: 4px;
+  }
+
+  .image-box-2 {
+    height: clamp(130px, 35vw, 260px);
+    border-radius: 6px;
+  }
+
+  .text-box h2 {
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    margin-top: clamp(30px, 6vw, 60px);
+  }
+
+  .image-stack {
+    width: clamp(180px, 50vw, 320px);   /* ancho contenedor */
+    margin-left: clamp(20px, 10vw, 150px);
+    height: auto;
+  }
+
+  .img-bottom {
+    width: clamp(140px, 40vw, 220px);
+    height: clamp(160px, 40vw, 280px);
+  }
+
+  .img-top {
+     bottom: clamp(50px, 10vw, 120px);      /* lo bajas un poco */
+    left: clamp(100px, 20vw, 150px);     /* aquí haces el "corrimiento" a la derecha */
+    width: clamp(140px, 40vw, 220px);
+    height: clamp(160px, 40vw, 280px);
+  }
+
+  .paths {
+    grid-template-columns: repeat(3, minmax (100px, 1fr));
+    gap: clamp(2px, 1vw, 8px);
+  }
+
+  .path li {
+    font-size: clamp(6px, 1.2vw, 12px);
+  }
 }

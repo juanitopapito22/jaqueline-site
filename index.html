@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
   </head>
   <body>
     
@@ -191,14 +192,16 @@ window.addEventListener('load', function(){
       button: { background: "#b6c3c4", text: "#2f444a" }
     },
     theme: "classic",
-    type: "opt-in", // “opt-in” = no instala cookies hasta aceptar
+    type: "opt-in",
+    position: "bottom-right", // o "middle" si lo prefieres centrado
+    layout: "box",
     content: {
       message: "Usamos cookies para mejorar tu experiencia y analizar el tráfico.",
       dismiss: "Aceptar",
       allow: "Aceptar todas",
       deny: "Rechazar",
       link: "Leer más",
-      href: "/politica-de-privacidad.html" // tu página de política
+      href: "/legal/politica-de-privacidad/"
     }
   });
 });
@@ -237,8 +240,8 @@ window.addEventListener('load', function(){
     <p class="footer-copy">Interiorismo, decoradores de interiores, y fabricantes de muebles en Colombia y España</p>
     <p class="footer-copy">Via Dos Castillas 33 - Ática 4 1 &#124; 28224 Pozuelo de Alarcon &#124; Madrid</p>
     <p class="footer-copy">&copy; 2025 Pagina gestionada por JPJ </p>
-     <a class="footer-copy" href="/legal/politica-de-privacidad/" style="text-decoration: none;">Política de Privacidad</a> ·
-      <a  class="footer-copy" href="/legal/aviso-legal/" style="text-decoration: none;">Aviso Legal</a>
+    <a class="footer-copy footer-copy--legal" href="/legal/politica-de-privacidad/">Política de Privacidad</a> ·
+    <a  class="footer-copy footer-copy--legal" href="/legal/aviso-legal/">Aviso Legal</a>
   </div>
 </footer>
 </html>
