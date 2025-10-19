@@ -1183,7 +1183,7 @@ h1 {
   .image-stack {
     width: clamp(180px, 50vw, 320px);   /* ancho contenedor */
     margin-left: clamp(20px, 10vw, 150px);
-    margin-top: 30px;
+    margin-top: 60px;
     height: auto;
   }
 
@@ -1202,10 +1202,12 @@ h1 {
   .paths {
     grid-template-columns: repeat(2, minmax (100px, 1fr));
     gap: clamp(2px, 1vw, 8px);
-    margin-top: 40px;
+    margin-top: 60px;
   }
 
   .path li {
     font-size: clamp(6px, 1.2vw, 12px);
   }
+
+  .photo--small { aspect-ratio: 4 / 1; } 
 }

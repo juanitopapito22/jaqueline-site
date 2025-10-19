@@ -1,0 +1,10 @@
+# Fuerza HTTPS
+http://*  https://:host/:splat  301!
+
+# Unifica el dominio (elige el que tengas como principal)
+https://www.jaquelinemartinez.com/*   https://jaquelinemartinez.com/:splat   301!
+
+# (Deja comentadas las siguientes líneas por ahora)
+# Cuando el dominio jaquelinediseñointerior.com esté listo y activo:
+# https://jaquelinemartinez.com/*       https://xn--jaquelinediseointerior-wec.com/:splat  301!
+# https://www.jaquelinemartinez.com/*   https://xn--jaquelinediseointerior-wec.com/:splat  301!
