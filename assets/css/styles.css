@@ -840,6 +840,7 @@ h1 {
   opacity: 1;
   pointer-events: auto;
   padding-bottom: clamp(180px, 32vw, 460px);
+  height: auto; 
 }
 .path{
   background: #fff;
@@ -1200,7 +1201,7 @@ h1 {
 
   .paths {
     position: static;
-    top: auto; left:auto;right: auto;
+    top: auto; left:auto;right: auto; height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1217,7 +1218,7 @@ h1 {
     padding-bottom: clamp(16px, 6vw, 36px);
   }
   #servicios-content .paths{position: static; margin-top: 16px;}
-  #servicios-content .is-open .paths{opacity:1; pointer-events:auto;}
+  #servicios-content .is-open .paths{opacity:1; pointer-events:auto;height: auto;}
 
   .servicios {
   background-image: url('/assets/imagenes/Copia\ de\ IMG_3738b.png');
@@ -1231,7 +1232,6 @@ h1 {
 .servicios-content {
   background-color: #fff;
   width: 95%;
-  height: clamp(680px, 180vw, 1650px);
   margin: 0 auto 10px auto;
 }
 
