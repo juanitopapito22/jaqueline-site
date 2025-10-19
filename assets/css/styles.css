@@ -1165,22 +1165,18 @@ h1 {
 
   .servicios-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: minmax(12px, 1fr) auto minmax(12px, 1fr);
     gap: 12px;
     align-items: center;
   }
-  .image-box   { grid-column: 1; grid-row: 1; }
-  .text-box    { grid-column: 2; grid-row: 1; }
-  .image-box-2 { grid-column: 1 / span 2; grid-row: 2; }
-
+  
   /* Imágenes laterales */
   .image-box {
-    height: clamp(140px, 35vw, 300px);
+    height: clamp(160px, 36vw, 260px);
     border-radius: 4px;
   }
   .image-box-2 {
-    height: clamp(130px, 35vw, 260px);
+    height: clamp(150px, 36vw, 250px);
     border-radius: 6px;
     /* IMPORTANTE: quitar el margin-top gigante que empujaba todo */
     margin-top: 0;
@@ -1189,38 +1185,29 @@ h1 {
   /* Texto */
   .text-box h2 {
     font-size: clamp(1.2rem, 3vw, 2.5rem);
-    margin-top: clamp(30px, 6vw, 60px);
+    margin-top: clamp(24px, 6vw, 48x);
   }
   .path li { font-size: clamp(6px, 1.2vw, 12px); }
 
   /* Image stack (debajo, siempre visible) */
-  .image-stack {
-    width: clamp(180px, 50vw, 320px);
-    margin-left: auto;   /* centrado en móvil */
-    margin-right: auto;
-    margin-top: 60px;
-    height: auto;
-  }
   .img-bottom {
-    width: clamp(140px, 40vw, 220px);
-    height: clamp(160px, 40vw, 280px);
+    width: clamp(180px, 56vw, 300px);
+    height: clamp(200px, 56vw, 320px);
   }
   .img-top {
-    bottom: clamp(50px, 10vw, 120px);
-    left: clamp(100px, 20vw, 150px);
-    width: clamp(140px, 40vw, 220px);
-    height: clamp(160px, 40vw, 280px);
+    bottom: clamp(40px, 10vw, 110px);
+    left: clamp(90px, 22vw, 150px);
+    width: clamp(180px, 56vw, 300px);
+    height: clamp(200px, 56vw, 320px);
   }
 
   /* Panel de paths: en el flujo y oculto hasta abrir */
   .paths {
     position: static;
-    top: auto; left: auto; right: auto;
-    height: auto;
     display: none;                 /* oculto por defecto */
     flex-wrap: wrap;
     justify-content: center;
-    gap: clamp(2px, 1vw, 8px);
+    gap: 12px;
     margin-top: 16px;
     pointer-events: auto;
     z-index: auto;
@@ -1230,7 +1217,7 @@ h1 {
   #servicios-content.is-open .paths {
     display: flex;
   }
-  .path { flex: 1 1 calc(50% - 16px); }
+  .path { flex: 1 1 100%; }
 
   /* Caja blanca: alto automático, sin 200vh */
   .servicios-content {
@@ -1238,6 +1225,13 @@ h1 {
     height: auto !important;
     padding-bottom: clamp(16px, 6vw, 36px);
     margin: 0 auto 10px auto;
+  }
+
+  .image-stack {
+    width: clamp(200px, 60vw, 320px);
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
   }
 
   /* Fondo de la sección: sin min-height gigantes */
@@ -1256,12 +1250,12 @@ h1 {
 /* ====== ESCRITORIO ====== */
 @media (min-width: 769px) {
   /* NO uses absolute para .paths: ya no hace falta, las fotos están fuera */
-  .paths { position: static; display: none; }
+  .paths { display: none; }
   #servicios-content.is-open .paths { display: flex; }
 
   /* Si quieres reservar espacio extra al abrir (bajo el botón) */
   #servicios-content.is-open {
-    padding-bottom: clamp(220px, 20vw, 420px);
+    padding-bottom: clamp(180px, 20vw, 380px);
   }
 }
 
