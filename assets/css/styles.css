@@ -793,6 +793,8 @@ h1 {
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
+.image-stack-wrapper{ margin-top: clamp(20px, 8vw, 100px);}
+
 .img-bottom {
   object-fit: cover;
   display: block;
@@ -1242,6 +1244,7 @@ h1 {
     padding-top: 8px;
     margin: 0;
   }
+  .image-stack-wrapper {margin-top: clamp(80px, 20vw, 160px);}
 
   .tres-pilares { gap: calc(20px + 4vw); }
 }
