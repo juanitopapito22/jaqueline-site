@@ -667,15 +667,16 @@ h1 {
   background-image: url('/assets/imagenes/Copia\ de\ IMG_3738b.png');
   background-size: cover;
   background-position: center;
-  min-height: clamp(600px, 180vh, 1670px); /* ocupa toda la pantalla */
+  background-position: center;
   margin: 0; /* por si acaso */
-  padding-top: 8px;
+  padding-block: clamp(24px, 6vw, 80px);
 }
 
 .servicios-content {
   background-color: #fff;
-  width: 95%;
-  height: clamp(580px, 150vw, 1650px);
+  position: relative;
+  width: min(95%, 1100px);
+  padding: clamp(16px, 3vw, 40px);
   margin: 0 auto 10px auto;
 }
 
@@ -691,7 +692,7 @@ h1 {
 .servicios-grid {
   display: grid; 
   grid-template-columns: 1fr auto 1fr;
-  gap: clamp(90px, 10vw, 90px);
+  gap: 16px;
   grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr);
 }
 
@@ -821,14 +822,21 @@ h1 {
 }
 
 .paths{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  position: absolute;
+  display: flex; 
+  flex-wrap: wrap;
   gap: clamp(2px, 1vw, 18px);
-  margin-top: 10px;
   opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
   transition: opacity .5s ease, transform .5s ease;
+  justify-content: center;
+  z-index: 2;
+}
+
+#servicios-content.drawer.is-open .paths {
+  opacity: 1;
+  pointer-events: auto;
 }
 .path{
   background: #fff;
@@ -1193,16 +1201,22 @@ h1 {
   }
 
   .paths {
+    position: static;
+    top: auto; left:auto;right: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: clamp(2px, 1vw, 8px);
-    margin-top: 90px;
+    margin-top: 16px;
+    pointer-events: auto;
   }
 
   .path {
     flex: 1 1 calc(50% - 16px);
   }
+
+  #servicios-content .paths{position: static; margin-top: 16px;}
+  #servicios-content .is-open .paths{opacity:1; pointer-events:auto;}
 
   .servicios {
   background-image: url('/assets/imagenes/Copia\ de\ IMG_3738b.png');
