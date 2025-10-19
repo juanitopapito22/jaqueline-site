@@ -118,22 +118,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const root = document.getElementById('servicios-content');
-  const btn  = document.getElementById('bton-servicios');
-  const paths= root?.querySelector('.paths');
+  const root  = document.getElementById('servicios-content');
+  const btn   = document.getElementById('bton-servicios');
+  const paths = root?.querySelector('.paths');
 
-  if (!root || !btn) return;
+  if (!root || !btn || !paths) return;
+
+  // accesibilidad básica
+  btn.type = 'button';
+  btn.setAttribute('aria-controls', 'paths');
+  btn.setAttribute('aria-expanded', 'false');
+  paths.setAttribute('aria-hidden', 'true');
 
   btn.addEventListener('click', () => {
     const open = root.classList.toggle('is-open');
     btn.setAttribute('aria-expanded', String(open));
-    paths?.setAttribute('aria-hidden', String(!open));
+    paths.setAttribute('aria-hidden', String(!open));
 
     if (open) {
-      
-      setTimeout (() => {
-        root.scrollIntoView ({behavior: 'smooth', block: 'end'});
-      }, 400);
+      // Esperar un poco a que el layout cambie (para móvil)
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          // Desplázate directamente hasta los paths (más estable que root)
+          paths.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      });
     }
   });
 });

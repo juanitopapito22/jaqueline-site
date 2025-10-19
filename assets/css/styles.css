@@ -823,6 +823,8 @@ h1 {
 
 .paths{
   position: absolute;
+  top: calc(100% + 12px);
+  left: 0; right: 0;
   display: flex; 
   flex-wrap: wrap;
   gap: clamp(2px, 1vw, 18px);
@@ -837,6 +839,7 @@ h1 {
 #servicios-content.drawer.is-open .paths {
   opacity: 1;
   pointer-events: auto;
+  padding-bottom: clamp(180px, 32vw, 460px);
 }
 .path{
   background: #fff;
@@ -881,12 +884,7 @@ h1 {
 .servicios-content.is-open .image-stack .img-bottom{
   transform: translateX(-40%); opacity: 0;
 }
-.servicios-content.is-open .paths{
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-  margin-top: clamp(-1200px, -40vw, -280px);
-}
+
 
 .portafolio {
   margin-top: 130px;
@@ -1214,7 +1212,10 @@ h1 {
   .path {
     flex: 1 1 calc(50% - 16px);
   }
-
+  .servicios-content {
+    height: auto !important;
+    padding-bottom: clamp(16px, 6vw, 36px);
+  }
   #servicios-content .paths{position: static; margin-top: 16px;}
   #servicios-content .is-open .paths{opacity:1; pointer-events:auto;}
 
