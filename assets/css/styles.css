@@ -667,7 +667,7 @@ h1 {
   background-image: url('/assets/imagenes/Copia\ de\ IMG_3738b.png');
   background-size: cover;
   background-position: center;
-  min-height: clamp(570px, 180vh, 1670px); /* ocupa toda la pantalla */
+  min-height: clamp(6600px, 180vh, 1670px); /* ocupa toda la pantalla */
   margin: 0; /* por si acaso */
   padding-top: 8px;
 }
@@ -675,7 +675,7 @@ h1 {
 .servicios-content {
   background-color: #fff;
   width: 95%;
-  height: clamp(850px, 189vw, 1650px);
+  height: clamp(500px, 150vw, 1650px);
   margin: 0 auto 10px auto;
 }
 
@@ -916,11 +916,6 @@ h1 {
 .item--wide  { grid-column: 1 / -1; aspect-ratio: 16 / 9; } /* ocupa 2 columnas */
 
 /* Columna derecha de la fila 2 con dos imágenes apiladas */
-.stack-right{
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: clamp(8px, 1.5vw, 14px);
-}
 
 /* Hover suave */
 .item:hover img{
@@ -1030,7 +1025,7 @@ h1 {
   grid-template-columns: 1.5fr 1fr;
   gap: 10px;
   padding-top: 30px;
-  
+
 }.photo--tall {
   grid-row: span 2;
 }
@@ -1202,7 +1197,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: clamp(2px, 1vw, 8px);
-    margin-top: 60px;
+    margin-top: 90px;
   }
 
   .path {
