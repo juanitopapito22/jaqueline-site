@@ -781,8 +781,9 @@ h1 {
 .btn-wrapper {
   display: flex;
   justify-content: center;
+  z-index: 2;
   margin-top: clamp(8px, 1.6vw, 16px);
-
+margin-bottom: clamp(16px, 3.5vw, 40px);
 }
 
 .image-stack {
@@ -793,7 +794,7 @@ h1 {
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-.image-stack-wrapper{ margin-top: clamp(20px, 8vw, 100px);}
+.image-stack-wrapper{ margin-top: clamp(80px, 9vw, 220px);}
 
 .img-bottom {
   object-fit: cover;
