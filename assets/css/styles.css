@@ -1159,114 +1159,110 @@ h1 {
   .logo svg {
     width: clamp(150px, 25vw, 200px);
   }
+  .tres-pilares {
+    gap: calc(20px + 4vw);
+  }
+
   .servicios-grid {
-    grid-template-columns: 10vw auto 10vw;
-    gap: 10px;
-  }
-
-  .image-box {
-    height: clamp(140px, 35vw, 300px);
-    border-radius: 4px;
-  }
-
-  .image-box-2 {
-    height: clamp(130px, 35vw, 260px);
-    border-radius: 6px;
-  }
-
-  .text-box h2 {
-    font-size: clamp(1.2rem, 3vw, 2.5rem);
-    margin-top: clamp(30px, 6vw, 60px);
-  }
-
-  .image-stack {
-    width: clamp(180px, 50vw, 320px);   /* ancho contenedor */
-    margin-left: clamp(20px, 10vw, 150px);
-    margin-top: 60px;
-    height: auto;
-  }
-
-  .img-bottom {
-    width: clamp(140px, 40vw, 220px);
-    height: clamp(160px, 40vw, 280px);
-  }
-
-  .img-top {
-     bottom: clamp(50px, 10vw, 120px);      /* lo bajas un poco */
-    left: clamp(100px, 20vw, 150px);     /* aquí haces el "corrimiento" a la derecha */
-    width: clamp(140px, 40vw, 220px);
-    height: clamp(160px, 40vw, 280px);
-  }
-
-  
-  .servicios-grid{
+    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
     gap: 12px;
+    align-items: center;
   }
   .image-box   { grid-column: 1; grid-row: 1; }
   .text-box    { grid-column: 2; grid-row: 1; }
   .image-box-2 { grid-column: 1 / span 2; grid-row: 2; }
 
+  /* Imágenes laterales */
+  .image-box {
+    height: clamp(140px, 35vw, 300px);
+    border-radius: 4px;
+  }
+  .image-box-2 {
+    height: clamp(130px, 35vw, 260px);
+    border-radius: 6px;
+    /* IMPORTANTE: quitar el margin-top gigante que empujaba todo */
+    margin-top: 0;
+  }
 
+  /* Texto */
+  .text-box h2 {
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    margin-top: clamp(30px, 6vw, 60px);
+  }
+  .path li { font-size: clamp(6px, 1.2vw, 12px); }
+
+  /* Image stack (debajo, siempre visible) */
+  .image-stack {
+    width: clamp(180px, 50vw, 320px);
+    margin-left: auto;   /* centrado en móvil */
+    margin-right: auto;
+    margin-top: 60px;
+    height: auto;
+  }
+  .img-bottom {
+    width: clamp(140px, 40vw, 220px);
+    height: clamp(160px, 40vw, 280px);
+  }
+  .img-top {
+    bottom: clamp(50px, 10vw, 120px);
+    left: clamp(100px, 20vw, 150px);
+    width: clamp(140px, 40vw, 220px);
+    height: clamp(160px, 40vw, 280px);
+  }
+
+  /* Panel de paths: en el flujo y oculto hasta abrir */
   .paths {
     position: static;
-    top: auto; left:auto;right: auto; height: auto;
-    display: flex;
+    top: auto; left: auto; right: auto;
+    height: auto;
+    display: none;                 /* oculto por defecto */
     flex-wrap: wrap;
     justify-content: center;
     gap: clamp(2px, 1vw, 8px);
     margin-top: 16px;
     pointer-events: auto;
     z-index: auto;
-    scroll-margin-top: 84px;
+    scroll-margin-top: 84px;       /* compensa header fijo al hacer scroll */
   }
+  /* 👇 OJO al selector correcto: el .is-open va en el CONTENEDOR */
+  #servicios-content.is-open .paths {
+    display: flex;
+  }
+  .path { flex: 1 1 calc(50% - 16px); }
 
-  .path {
-    flex: 1 1 calc(50% - 16px);
-  }
+  /* Caja blanca: alto automático, sin 200vh */
   .servicios-content {
+    width: 95%;
     height: auto !important;
     padding-bottom: clamp(16px, 6vw, 36px);
+    margin: 0 auto 10px auto;
   }
-  #servicios-content .paths{position: static; margin-top: 16px;}
-  #servicios-content .is-open .paths{opacity:1; pointer-events:auto;height: auto;}
 
+  /* Fondo de la sección: sin min-height gigantes */
   .servicios {
-  background-image: url('/assets/imagenes/Copia\ de\ IMG_3738b.png');
-  background-size: cover;
-  background-position: center;
-  min-height: clamp(700px, 200vh, 1670px); /* ocupa toda la pantalla */
-  margin: 0; /* por si acaso */
-  padding-top: 8px;
-}
-
-.servicios-content {
-  background-color: #fff;
-  width: 95%;
-  margin: 0 auto 10px auto;
-}
-
-  .path li {
-    font-size: clamp(6px, 1.2vw, 12px);
+    background-image: url('/assets/imagenes/Copia de IMG_3738b.png'); /* evita backslashes */
+    background-size: cover;
+    background-position: center;
+    padding-top: 8px;
+    margin: 0;
   }
 
+  .tres-pilares { gap: calc(20px + 4vw); }
+}
 
-  .tres-pilares {
-    gap: calc(20px + 4vw);
+
+/* ====== ESCRITORIO ====== */
+@media (min-width: 769px) {
+  /* NO uses absolute para .paths: ya no hace falta, las fotos están fuera */
+  .paths { position: static; display: none; }
+  #servicios-content.is-open .paths { display: flex; }
+
+  /* Si quieres reservar espacio extra al abrir (bajo el botón) */
+  #servicios-content.is-open {
+    padding-bottom: clamp(220px, 20vw, 420px);
   }
 }
 
-@media (min-width: 769px){
-  .paths{
-    position: absolute;
-    left: 0; right: 0;
-    top: calc(100% + 12px);      /* justo debajo del bloque blanco */
-    margin-top: 0;               /* ya no hace falta */
-    z-index: 3;
-  }
-  /* Al abrir, añade fondo blanco debajo para “hacer sitio” al panel */
-  #servicios-content.is-open{
-    padding-bottom: clamp(220px, 32vw, 480px);
-  }
-}
+
