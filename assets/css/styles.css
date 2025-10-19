@@ -667,7 +667,7 @@ h1 {
   background-image: url('/assets/imagenes/Copia\ de\ IMG_3738b.png');
   background-size: cover;
   background-position: center;
-  min-height: clamp(6600px, 180vh, 1670px); /* ocupa toda la pantalla */
+  min-height: clamp(600px, 180vh, 1670px); /* ocupa toda la pantalla */
   margin: 0; /* por si acaso */
   padding-top: 8px;
 }
@@ -675,7 +675,7 @@ h1 {
 .servicios-content {
   background-color: #fff;
   width: 95%;
-  height: clamp(500px, 150vw, 1650px);
+  height: clamp(580px, 150vw, 1650px);
   margin: 0 auto 10px auto;
 }
 
@@ -1203,6 +1203,22 @@ h1 {
   .path {
     flex: 1 1 calc(50% - 16px);
   }
+
+  .servicios {
+  background-image: url('/assets/imagenes/Copia\ de\ IMG_3738b.png');
+  background-size: cover;
+  background-position: center;
+  min-height: clamp(700px, 200vh, 1670px); /* ocupa toda la pantalla */
+  margin: 0; /* por si acaso */
+  padding-top: 8px;
+}
+
+.servicios-content {
+  background-color: #fff;
+  width: 95%;
+  height: clamp(680px, 180vw, 1650px);
+  margin: 0 auto 10px auto;
+}
 
   .path li {
     font-size: clamp(6px, 1.2vw, 12px);
