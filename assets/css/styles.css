@@ -1030,6 +1030,9 @@ h1 {
   grid-template-columns: 1.5fr 1fr;
   gap: 10px;
   padding-top: 30px;
+  
+}.photo--tall {
+  grid-row: span 2;
 }
 
 .cuadricula {
@@ -1052,11 +1055,6 @@ h1 {
   display: block;
   overflow: hidden;
 }
-
-.photo--small { aspect-ratio: 4 / 1.2; }   /* “bajas” */
-.photo--tall  { aspect-ratio: 4 / 3.2; }   /* misma anchura, el doble de alto que small */
-.photo--wide  { aspect-ratio: 16 / 9; } /* ocupa 2 columnas */
-
 
 .nombre--proyecto-2 {
   background-image: url('/assets/imagenes/Diseño\ personalizado\ cocina_malabar\ lakes.png');
@@ -1200,14 +1198,23 @@ h1 {
   }
 
   .paths {
-    grid-template-columns: repeat(2, minmax (100px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: clamp(2px, 1vw, 8px);
     margin-top: 60px;
+  }
+
+  .path {
+    flex: 1 1 calc(50% - 16px);
   }
 
   .path li {
     font-size: clamp(6px, 1.2vw, 12px);
   }
 
-  .photo--small { aspect-ratio: 4 / 1; } 
+
+  .tres-pilares {
+    gap: calc(20px + 4vw);
+  }
 }
