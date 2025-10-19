@@ -822,21 +822,15 @@ h1 {
 }
 
 .paths{
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 0; right: 0;
-  display: flex; 
-  flex-wrap: wrap;
-  gap: clamp(2px, 1vw, 18px);
-  opacity: 0;
-  transform: translateY(12px);
-  pointer-events: none;
-  transition: opacity .5s ease, transform .5s ease;
+  display: none;
+  margin-top: 16px;
+  gap: 16px;
   justify-content: center;
-  z-index: 2;
+  flex-wrap: wrap;
 }
 
-#servicios-content.drawer.is-open .paths {
+#servicios-content.is-open .paths {
+  display: flex;
   opacity: 1;
   pointer-events: auto;
   padding-bottom: clamp(180px, 32vw, 460px);
@@ -1208,6 +1202,8 @@ h1 {
     gap: clamp(2px, 1vw, 8px);
     margin-top: 16px;
     pointer-events: auto;
+    z-index: auto;
+    scroll-margin-top: 84px;
   }
 
   .path {
@@ -1242,5 +1238,19 @@ h1 {
 
   .tres-pilares {
     gap: calc(20px + 4vw);
+  }
+}
+
+@media (min-width: 769px){
+  .paths{
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(100% + 12px);      /* justo debajo del bloque blanco */
+    margin-top: 0;               /* ya no hace falta */
+    z-index: 3;
+  }
+  /* Al abrir, añade fondo blanco debajo para “hacer sitio” al panel */
+  #servicios-content.is-open{
+    padding-bottom: clamp(220px, 32vw, 480px);
   }
 }

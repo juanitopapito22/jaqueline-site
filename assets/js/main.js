@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           // Desplázate directamente hasta los paths (más estable que root)
           paths.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+        }, 80);
       });
     }
   });
