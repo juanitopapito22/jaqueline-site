@@ -45,61 +45,52 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
-  const topbar   = document.querySelector('.topbar');
+  const topbar = document.querySelector('.topbar');
   const sentinel = document.getElementById('topbar-sentinel');
   if (!topbar || !sentinel) return;
 
   let observer;
 
   const setupObserver = () => {
-    // Si ya había uno, lo desconectamos para no tener 2 activos
+    // Limpia cualquier observer previo
     if (observer) observer.disconnect();
 
-    // Medimos altura real de la topbar (ya renderizada)
     const tbH = Math.ceil(topbar.getBoundingClientRect().height || 0);
 
-    // Sumamos 1px para evitar el rebote justo en el borde
-    const margin = `-${tbH + 1}px 0px 0px 0px`;
+    // 🎯 Compensamos más en pantallas pequeñas, pero mantenemos sensible en desktop
+    const vhCompensate = window.innerWidth < 768 ? 70 : 5;
+    const margin = `-${tbH + vhCompensate}px 0px 0px 0px`;
 
     observer = new IntersectionObserver(([entry]) => {
-      // Cuando el sentinela sale por arriba, activamos .scrolled
       const shouldBeScrolled = !entry.isIntersecting;
       topbar.classList.toggle('scrolled', shouldBeScrolled);
     }, { rootMargin: margin, threshold: 0 });
 
     observer.observe(sentinel);
-  
 
-  const startScrolled =(sentinel.getBoundingClientRect ().top - tbH) < 0;
-  topbar.classList.toggle('scrolled', startScrolled);
-
-  setTimeout(() => {
-    observer.disconnect();
-    observer.observe(sentinel);
-  }, 600);
+    // Estado inicial correcto
+    const startScrolled = (sentinel.getBoundingClientRect().top - tbH - vhCompensate) < 0;
+    topbar.classList.toggle('scrolled', startScrolled);
   };
-  
 
-  // 1) Configuramos ahora
+  // Inicializa una vez
   setupObserver();
 
-  // 2) Reconfiguramos si cambian las fuentes (alturas)
+  // 🔁 Recalcular si cambian las fuentes, tamaños o cookie banners
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(setupObserver).catch(()=>{});
+    document.fonts.ready.then(setupObserver).catch(() => {});
   }
 
-  // 3) Reconfiguramos en resize/orientación
   window.addEventListener('resize', () => {
-    // debounce simple
     clearTimeout(window.__tbResizeTO);
-    window.__tbResizeTO = setTimeout(setupObserver, 120);
+    window.__tbResizeTO = setTimeout(setupObserver, 150);
   }, { passive: true });
 
-  // 4) Por si imágenes del hero cambian alturas después del DOMContentLoaded
-  window.addEventListener('load', setupObserver);
+  // Ajuste final tras cargas diferidas (cookies, imágenes, etc.)
+  window.addEventListener('load', () => setTimeout(setupObserver, 500));
 });
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');

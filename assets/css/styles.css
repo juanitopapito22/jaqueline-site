@@ -600,7 +600,7 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: clamp(0.8rem, 1vw, 1.2rem);
+  font-size: clamp(0.7rem, 2.3vw, 1rem);
   color: #fff;
   gap: calc(20px + 6vw);
   font-family: 'ablation', sans-serif;
@@ -1173,17 +1173,27 @@ h1 {
     width: clamp(170px, 30vw, 200px);
   }
 
+  .bg-img-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/imagenes/Diseño_casa_familiar_malabar_lakes.JPG');
+  background-size: cover;
+  background-position: center;
+  height: clamp(130px, 23vh, 180px);
+  margin-top: 80px;
+}
+
   .bg-img-text-2 {
     height: clamp(170px, 27vw, 200px);
   }
  
   .tres-pilares {
     gap: calc(40px + 4vw, 120px);
+    font-size: (4px, 2vw, 8px);
   }
 
-  .tres-pilares p {
-    font-size: (3px, 0.6vw, 10px);
-  }
+  
 
   .main-page {
   background-image: url('/assets/imagenes/Comedor\ principal_marari.png');
@@ -1305,9 +1315,7 @@ h1 {
     gap: calc(40px + 4vw, 120px);
   }
 
-  .tres-pilares p {
-    font-size: (3px, 0.6vw, 10px);
-  }
+ 
   /* NO uses absolute para .paths: ya no hace falta, las fotos están fuera */
   .paths { display: none; }
   #servicios-content.is-open .paths { display: flex; }
