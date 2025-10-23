@@ -65,11 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     observer = new IntersectionObserver(([entry]) => {
       // Cuando el sentinela sale por arriba, activamos .scrolled
-      topbar.classList.toggle('scrolled', !entry.isIntersecting);
+      const shouldBeScrolled = !entry.isIntersecting;
+      topbar.classList.toggle('scrolled', shouldBeScrolled);
     }, { rootMargin: margin, threshold: 0 });
 
     observer.observe(sentinel);
+  
+
+  const startScrolled =(sentinel.getBoundingClientRect ().top - tbH) < 0;
+  topbar.classList.toggle('scrolled', startScrolled);
+
+  setTimeout(() => {
+    observer.disconnect();
+    observer.observe(sentinel);
+  }, 600);
   };
+  
 
   // 1) Configuramos ahora
   setupObserver();
@@ -89,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4) Por si imágenes del hero cambian alturas después del DOMContentLoaded
   window.addEventListener('load', setupObserver);
 });
-
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
