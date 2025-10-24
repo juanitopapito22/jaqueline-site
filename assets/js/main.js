@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbH = Math.ceil(topbar.getBoundingClientRect().height || 0);
 
     // 🎯 Compensamos más en pantallas pequeñas, pero mantenemos sensible en desktop
-    const vhCompensate = window.innerWidth < 768 ? 200 : 5;
+    const vhCompensate = window.innerWidth < 768 ? 250 : 5;
     const margin = `-${tbH + vhCompensate}px 0px 0px 0px`;
 
     observer = new IntersectionObserver(([entry]) => {
