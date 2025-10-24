@@ -46,50 +46,67 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const topbar = document.querySelector('.topbar');
+  const topbar   = document.querySelector('.topbar');
   const sentinel = document.getElementById('topbar-sentinel');
   if (!topbar || !sentinel) return;
 
   let observer;
 
+  // Cambia SÓLO cuando el sentinel real cruza el umbral
   const setupObserver = () => {
-    // Limpia cualquier observer previo
+
     if (observer) observer.disconnect();
 
-    const tbH = Math.ceil(topbar.getBoundingClientRect().height || 0);
+    // Asegúrate de medir sin estilos de "scrolled"
+    topbar.classList.remove('scrolled');
 
-    // 🎯 Compensamos más en pantallas pequeñas, pero mantenemos sensible en desktop
-    const vhCompensate = window.innerWidth < 768 ? 250 : 5;
+    const tbH = Math.ceil(topbar.getBoundingClientRect().height || 0);
+    // Ajusta este número si quieres que cambie antes/después de pasar sentinel
+    const vhCompensate = window.innerWidth < 768 ? 200 : 5;
     const margin = `-${tbH + vhCompensate}px 0px 0px 0px`;
 
+    // Histeresis suave: ignorar jitter < 2px al calcular estado inicial
+    const atTop = () => (window.pageYOffset || document.documentElement.scrollTop || 0) <= 1;
+
     observer = new IntersectionObserver(([entry]) => {
-      const shouldBeScrolled = !entry.isIntersecting;
+      // Sólo usamos el estado de intersección del sentinel
+      const shouldBeScrolled = !entry.isIntersecting && !atTop();
       topbar.classList.toggle('scrolled', shouldBeScrolled);
     }, { rootMargin: margin, threshold: 0 });
 
     observer.observe(sentinel);
 
-    // Estado inicial correcto
-    const startScrolled = (sentinel.getBoundingClientRect().top - tbH - vhCompensate) < 0;
-    topbar.classList.toggle('scrolled', startScrolled);
+    // Estado inicial robusto (sin depender de scroll)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const rect = sentinel.getBoundingClientRect();
+        const startScrolled = (rect.top - tbH - vhCompensate) < 0 && !atTop();
+        topbar.classList.toggle('scrolled', startScrolled);
+      });
+    });
   };
 
-  // Inicializa una vez
-  setupObserver();
+  const debounced = (fn, d=150) => { clearTimeout(fn.__t); fn.__t = setTimeout(fn, d); };
 
-  // 🔁 Recalcular si cambian las fuentes, tamaños o cookie banners
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(setupObserver).catch(() => {});
+  // Recalcula cuando todo terminó de cargar (imágenes, banner abajo, etc.)
+  window.addEventListener('load', () => setTimeout(setupObserver, 300));
+
+  // Si cambian fuentes/alto del topbar, recalcula
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(() => debounced(setupObserver, 80)).catch(()=>{});
   }
 
-  window.addEventListener('resize', () => {
-    clearTimeout(window.__tbResizeTO);
-    window.__tbResizeTO = setTimeout(setupObserver, 150);
-  }, { passive: true });
+  // Cambios de tamaño/orientación
+  window.addEventListener('resize', () => debounced(setupObserver), { passive: true });
+  window.addEventListener('orientationchange', () => debounced(setupObserver, 80));
 
-  // Ajuste final tras cargas diferidas (cookies, imágenes, etc.)
-  window.addEventListener('load', () => setTimeout(setupObserver, 500));
+  // Si Cookiebot aparece/desaparece (banner abajo), recalcula
+  window.addEventListener('CookiebotOnShow',    () => setTimeout(setupObserver, 200));
+  window.addEventListener('CookiebotOnHide',    () => setTimeout(setupObserver, 200));
+  window.addEventListener('CookiebotOnAccept',  () => setTimeout(setupObserver, 200));
+  window.addEventListener('CookiebotOnDecline', () => setTimeout(setupObserver, 200));
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
