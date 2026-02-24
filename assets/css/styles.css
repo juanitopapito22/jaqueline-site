@@ -488,6 +488,8 @@ hr {
 
 .proyecto-1, .proyecto-2 {
   position: relative; 
+  display: flex;
+  align-items: end;
   width: 100%;
   min-height: clamp(220px, 38vh, 450px); /* altura contenida */
   background-size: cover;
@@ -498,12 +500,14 @@ hr {
   overflow: hidden;
   margin-top: 20px;
   opacity: 0.9;
+  padding-left: clamp(35px, 9vw, 90px);
+  padding-bottom: clamp(15px, 4vw, 30px);
   
 }
 
 .proyecto-1 {
   background-image: url('/assets/imagenes/Diseño_personalizado_guaduales_sala_estar.png');
-  margin-bottom: 20px;
+ 
   
 }
 
@@ -514,8 +518,8 @@ hr {
 
 
 .contenido-proyecto {
-  margin-top: 100px;
-  margin-left: 90px;display: flex;
+  position: relative;
+  display: flex;
   flex-direction: column;
   gap: 18px;
   max-width: 70%; 
