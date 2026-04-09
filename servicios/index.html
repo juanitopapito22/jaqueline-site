@@ -431,13 +431,10 @@
     
     </div>
 
-    <section>
-    <div class="mobile-anchor" id="armonia-anchor"></div>
-    </section>
-
+    
     <section id="seccion-armonia" class="seccion-armonia">
       
-    <h2 class="titulo-servicios-individuales text-box-servicios">Armoniza tus espacios</h2>
+    <h2 class="titulo-servicios-individuales text-box-servicios" id="armonia-anchor">Armoniza tus espacios</h2>
     <h3 class="bridge-servicios text-box-servicios">La energía, la luz, las formas y el orden influyen en tu bienestar.</h3>
     <h3 class="bridge-servicios text-box-servicios">
       Diseñamos un espacio que trabaje a tu favor</h3>
@@ -633,7 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const target = document.querySelector(hash);
   if (!target) return;
 
-  const offset = 190; // ajusta según móvil
+  const offset = 90; // ajusta según móvil
 
   setTimeout(() => {
     const y =
