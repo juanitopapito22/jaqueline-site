@@ -19,16 +19,13 @@
     <meta name="keywords" content="Interiorismo, España, Madrid, Diseño de interiores, Decoración, Muebles personalizados, Servicios de interiorismo, Proyectos residenciales, Comerciales, Renderización,  Madrid, España, Colombia">
     <script>
 (function () {
-  if (window.location.hash) {
-    const originalHash = window.location.hash;
-    sessionStorage.setItem('pendingHashScroll', originalHash);
-
-    history.replaceState(
-      null,
-      '',
-      window.location.pathname + window.location.search
-    );
-  }
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const targetId = params.get('scroll');
+    if (targetId) {
+      document.documentElement.classList.add('pre-scroll-lock');
+    }
+  } catch (e) {}
 })();
 </script>
     <title>Interiorismo España Madrid | Jaqueline Muebles y Decoración - Servicios</title>
@@ -641,15 +638,14 @@ window.addEventListener('load', () => {
   const params = new URLSearchParams(window.location.search);
   const targetId = params.get('scroll');
 
-  console.log('scroll param:', targetId);
-
   if (!targetId) return;
 
   const target = document.getElementById(targetId);
 
-  console.log('target found:', target);
-
-  if (!target) return;
+  if (!target) {
+    document.documentElement.classList.remove('pre-scroll-lock');
+    return;
+  }
 
   const topbar = document.querySelector('.topbar');
   const headerOffset = topbar ? topbar.getBoundingClientRect().height : 0;
@@ -661,11 +657,13 @@ window.addEventListener('load', () => {
     window.pageYOffset -
     offset;
 
-  window.scrollTo({
-    top: targetY,
-    behavior: 'smooth',
+  // posiciona directamente sin animación
+  window.scrollTo(0, targetY);
+
+  // muestra la página ya en el punto correcto
+  requestAnimationFrame(() => {
+    document.documentElement.classList.remove('pre-scroll-lock');
   });
-  
 });
 </script>
 <script src="/assets/js/main.js"></script>

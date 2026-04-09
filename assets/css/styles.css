@@ -2057,10 +2057,13 @@ height: 100%;
   transform: scale(0.95);
 }
 
-.mobile-anchor {
-  height: 1px;
+html.pre-scroll-lock {
+  overflow: hidden;
 }
 
+html.pre-scroll-lock body {
+  opacity: 0;
+}
 @media (max-width: 750px) {
 
    .grid-equipo {
