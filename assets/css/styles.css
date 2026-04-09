@@ -2086,6 +2086,9 @@ height: 100%;
   }
 
   
+  #anchor-armonia {
+    scroll-margin-top: 60px;
+  }
 
   .codigo-postal-field {
     grid-column: 1 / 4;
