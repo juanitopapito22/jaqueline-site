@@ -634,7 +634,7 @@ Reinterpretamos el Feng Shui desde una visión actual y sofisticada: sin superst
  
 </main>
 <script>
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const targetId = params.get('scroll');
 
@@ -657,10 +657,8 @@ window.addEventListener('load', () => {
     window.pageYOffset -
     offset;
 
-  // posiciona directamente sin animación
   window.scrollTo(0, targetY);
 
-  // muestra la página ya en el punto correcto
   requestAnimationFrame(() => {
     document.documentElement.classList.remove('pre-scroll-lock');
   });
