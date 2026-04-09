@@ -2091,11 +2091,6 @@ height: 100%;
 
 
   
-  #armonia-anchor {
-    display: block;
-    height: 1px;
-    scroll-margin-top: 0px;
-  }
 
   .codigo-postal-field {
     grid-column: 1 / 4;
@@ -2109,11 +2104,7 @@ height: 100%;
 @media (max-width: 600px) {
 
 
-   #armonia-anchor {
-    display: block;
-    height: 1px;
-    scroll-margin-top: 0px;
-  }
+
 
   .topbar-center svg {
     width: clamp(170px, 30vw, 200px);
