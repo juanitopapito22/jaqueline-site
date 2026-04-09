@@ -634,35 +634,58 @@ Reinterpretamos el Feng Shui desde una visión actual y sofisticada: sin superst
  
 </main>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const targetId = params.get('scroll');
+(function () {
+  const getTargetData = () => {
+    const params = new URLSearchParams(window.location.search);
+    const targetId = params.get('scroll');
+    if (!targetId) return null;
 
-  if (!targetId) return;
+    const target = document.getElementById(targetId);
+    if (!target) return null;
 
-  const target = document.getElementById(targetId);
+    const topbar = document.querySelector('.topbar');
+    const headerOffset = topbar ? topbar.getBoundingClientRect().height : 0;
+    const visualGap = 20;
+    const offset = headerOffset + visualGap;
 
-  if (!target) {
+    const targetY =
+      target.getBoundingClientRect().top +
+      window.pageYOffset -
+      offset;
+
+    return { targetY };
+  };
+
+  const revealPage = () => {
     document.documentElement.classList.remove('pre-scroll-lock');
-    return;
-  }
+  };
 
-  const topbar = document.querySelector('.topbar');
-  const headerOffset = topbar ? topbar.getBoundingClientRect().height : 0;
-  const visualGap = 20;
-  const offset = headerOffset + visualGap;
+  // Primer posicionamiento temprano
+  document.addEventListener('DOMContentLoaded', () => {
+    const data = getTargetData();
+    if (!data) {
+      revealPage();
+      return;
+    }
 
-  const targetY =
-    target.getBoundingClientRect().top +
-    window.pageYOffset -
-    offset;
-
-  window.scrollTo(0, targetY);
-
-  requestAnimationFrame(() => {
-    document.documentElement.classList.remove('pre-scroll-lock');
+    window.scrollTo(0, data.targetY);
   });
-});
+
+  // Corrección final precisa
+  window.addEventListener('load', () => {
+    const data = getTargetData();
+    if (!data) {
+      revealPage();
+      return;
+    }
+
+    window.scrollTo(0, data.targetY);
+
+    requestAnimationFrame(() => {
+      revealPage();
+    });
+  });
+})();
 </script>
 <script src="/assets/js/main.js"></script>
 
