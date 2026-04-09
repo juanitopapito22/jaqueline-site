@@ -17,6 +17,20 @@
 <!-- End Google Tag Manager -->
     <meta name="description" content="Servicios de interiorismo y diseño de interiores personalizados en Madrid, España y Colombia - Jaqueline Muebles y Decoración">
     <meta name="keywords" content="Interiorismo, España, Madrid, Diseño de interiores, Decoración, Muebles personalizados, Servicios de interiorismo, Proyectos residenciales, Comerciales, Renderización,  Madrid, España, Colombia">
+    <script>
+(function () {
+  if (window.location.hash) {
+    const originalHash = window.location.hash;
+    sessionStorage.setItem('pendingHashScroll', originalHash);
+
+    history.replaceState(
+      null,
+      '',
+      window.location.pathname + window.location.search
+    );
+  }
+})();
+</script>
     <title>Interiorismo España Madrid | Jaqueline Muebles y Decoración - Servicios</title>
     <link rel="canonical" href="https://jaquelinemartinez.com/servicios/index.html" />
     <link rel="stylesheet" href="/assets/css/styles.css">
@@ -624,7 +638,7 @@ Reinterpretamos el Feng Shui desde una visión actual y sofisticada: sin superst
 </main>
 <script>
 window.addEventListener('load', () => {
-  const hash = window.location.hash;
+  const hash = sessionStorage.getItem('pendingHashScroll');
   if (!hash) return;
 
   const target = document.querySelector(hash);
@@ -635,21 +649,23 @@ window.addEventListener('load', () => {
   const extraOffset = 16;
   const offset = headerOffset + extraOffset;
 
-  const scrollToHash = () => {
-    const y =
-      target.getBoundingClientRect().top +
-      window.pageYOffset -
-      offset;
+  const y =
+    target.getBoundingClientRect().top +
+    window.pageYOffset -
+    offset;
 
-    window.scrollTo({
-      top: y,
-      behavior: 'auto',
-    });
-  };
+  window.scrollTo({
+    top: y,
+    behavior: 'auto',
+  });
 
-  scrollToHash();
-  setTimeout(scrollToHash, 250);
-  setTimeout(scrollToHash, 600);
+  sessionStorage.removeItem('pendingHashScroll');
+
+  history.replaceState(
+    null,
+    '',
+    window.location.pathname + window.location.search + hash
+  );
 });
 </script>
 <script src="/assets/js/main.js"></script>
