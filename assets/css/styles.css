@@ -2057,6 +2057,10 @@ height: 100%;
   transform: scale(0.95);
 }
 
+.mobile-anchor {
+  height: 1px;
+}
+
 @media (max-width: 750px) {
 
    .grid-equipo {
@@ -2085,9 +2089,10 @@ height: 100%;
     align-self: center;
   }
 
+
   
-  #anchor-armonia {
-    scroll-margin-top: 5px;
+  #armonia-anchor {
+    scroll-margin-top: 70px;
   }
 
   .codigo-postal-field {
@@ -2107,7 +2112,6 @@ height: 100%;
 
 
   
-
   .topbar-center svg {
     width: clamp(170px, 30vw, 200px);
   }
