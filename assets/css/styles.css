@@ -805,6 +805,9 @@ hr {
   width: 30%;
   margin:auto;
 }
+
+
+
 .img-fabricantes {
   display: flex;
   margin: auto;
@@ -867,6 +870,12 @@ hr {
   margin: auto auto 10px auto;
 }
 
+#directos-fabricantes {
+  scroll-margin-top: 120px;
+}
+#transforma-espacios {
+  scroll-margin-top: 120px;
+}
 .headlines-3 {
   text-align: center;
   font-family: 'black-mango', sans-serif;
