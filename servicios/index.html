@@ -638,34 +638,34 @@ Reinterpretamos el Feng Shui desde una visión actual y sofisticada: sin superst
 </main>
 <script>
 window.addEventListener('load', () => {
-  const hash = sessionStorage.getItem('pendingHashScroll');
-  if (!hash) return;
+  const params = new URLSearchParams(window.location.search);
+  const targetId = params.get('scroll');
 
-  const target = document.querySelector(hash);
+  console.log('scroll param:', targetId);
+
+  if (!targetId) return;
+
+  const target = document.getElementById(targetId);
+
+  console.log('target found:', target);
+
   if (!target) return;
 
   const topbar = document.querySelector('.topbar');
   const headerOffset = topbar ? topbar.getBoundingClientRect().height : 0;
-  const extraOffset = 16;
-  const offset = headerOffset + extraOffset;
+  const visualGap = 20;
+  const offset = headerOffset + visualGap;
 
-  const y =
+  const targetY =
     target.getBoundingClientRect().top +
     window.pageYOffset -
     offset;
 
   window.scrollTo({
-    top: y,
-    behavior: 'auto',
+    top: targetY,
+    behavior: 'smooth',
   });
-
-  sessionStorage.removeItem('pendingHashScroll');
-
-  history.replaceState(
-    null,
-    '',
-    window.location.pathname + window.location.search + hash
-  );
+  
 });
 </script>
 <script src="/assets/js/main.js"></script>
