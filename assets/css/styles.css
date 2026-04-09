@@ -2102,15 +2102,14 @@ height: 100%;
   .subtitulo-descripcion-path {
     width: 80%;
   }
-
-  #seccion-armonia {
-    padding-top: 24px;
-  }
 }
 
 @media (max-width: 600px) {
 
 
+   #armonia-anchor {
+    scroll-margin-top: 70px;
+  }
   
   .topbar-center svg {
     width: clamp(170px, 30vw, 200px);
