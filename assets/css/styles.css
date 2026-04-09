@@ -2098,6 +2098,9 @@ height: 100%;
     width: 80%;
   }
 
+  #seccion-armonia {
+    padding-top: 24px;
+  }
 }
 
 @media (max-width: 600px) {
