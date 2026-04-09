@@ -2092,7 +2092,9 @@ height: 100%;
 
   
   #armonia-anchor {
-    scroll-margin-top: 10px;
+    display: block;
+    height: 1px;
+    scroll-margin-top: 0px;
   }
 
   .codigo-postal-field {
@@ -2108,7 +2110,9 @@ height: 100%;
 
 
    #armonia-anchor {
-    scroll-margin-top: 10px;
+    display: block;
+    height: 1px;
+    scroll-margin-top: 0px;
   }
 
   .topbar-center svg {
