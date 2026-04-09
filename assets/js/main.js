@@ -137,12 +137,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const buttons = document.querySelectorAll('.bton-servicios');
-  if (!buttons.length) return;
 
+  
   buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+
       const target = document.querySelector(btn.dataset.target);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      if (!target) return;
+
+      const offset = 80; // ajusta a tu header móvil
+
+      const y =
+        target.getBoundingClientRect().top +
+        window.pageYOffset -
+        offset;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth',
+      });
     });
   });
 });
