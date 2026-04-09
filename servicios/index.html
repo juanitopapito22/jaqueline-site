@@ -623,16 +623,19 @@ Reinterpretamos el Feng Shui desde una visión actual y sofisticada: sin superst
  
 </main>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const hash = window.location.hash;
   if (!hash) return;
 
   const target = document.querySelector(hash);
   if (!target) return;
 
-  const offset = 30; // ajusta según móvil
+  const topbar = document.querySelector('.topbar');
+  const headerOffset = topbar ? topbar.getBoundingClientRect().height : 0;
+  const extraOffset = 16;
+  const offset = headerOffset + extraOffset;
 
-  setTimeout(() => {
+  const scrollToHash = () => {
     const y =
       target.getBoundingClientRect().top +
       window.pageYOffset -
@@ -640,9 +643,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.scrollTo({
       top: y,
-      behavior: 'smooth',
+      behavior: 'auto',
     });
-  }, 100);
+  };
+
+  scrollToHash();
+  setTimeout(scrollToHash, 250);
+  setTimeout(scrollToHash, 600);
 });
 </script>
 <script src="/assets/js/main.js"></script>
