@@ -879,6 +879,7 @@ hr {
 #anchor-armonia {
   scroll-margin-top: 120px;
 }
+
 .headlines-3 {
   text-align: center;
   font-family: 'black-mango', sans-serif;
@@ -2199,6 +2200,11 @@ height: 100%;
     padding-top: 8px;
     margin: 0;
   }
+
+  .anchor-armonia {
+    scroll-margin-top: 60px;
+  }
+
   .image-stack-wrapper {
     margin-top: clamp(80px, 20vw, 160px);
   }
