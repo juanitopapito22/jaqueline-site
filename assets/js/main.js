@@ -106,6 +106,28 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('CookiebotOnAccept',  () => setTimeout(setupObserver, 200));
   window.addEventListener('CookiebotOnDecline', () => setTimeout(setupObserver, 200));
 });
+// Update Google Consent Mode when Cookiebot consent changes
+window.addEventListener('CookiebotOnAccept', function () {
+  if (typeof gtag === 'function' && typeof Cookiebot !== 'undefined') {
+    gtag('consent', 'update', {
+      analytics_storage: Cookiebot.consent.statistics ? 'granted' : 'denied',
+      ad_storage: Cookiebot.consent.marketing ? 'granted' : 'denied',
+      ad_user_data: Cookiebot.consent.marketing ? 'granted' : 'denied',
+      ad_personalization: Cookiebot.consent.marketing ? 'granted' : 'denied'
+    });
+  }
+});
+
+window.addEventListener('CookiebotOnDecline', function () {
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+  }
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
