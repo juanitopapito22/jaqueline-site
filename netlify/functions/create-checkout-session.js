@@ -5,12 +5,12 @@ exports.handler = async (event) => {
     // ✅ 1) Instancia correcta con tu secret key desde env
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-    const { service, m2, addOns, customer } = JSON.parse(event.body || "{}");
+    const { service, m2, addOns, customer, clientType } = JSON.parse(event.body || "{}");
 
     let amount = 0;
 
     if (service === "luz") {
-      amount = 450 * 100;
+      amount = clientType === "empresarial" ? 800 * 100 : 450 * 100;
     } else {
       if (service === "feng") amount += Math.round(Number(m2 || 0) * 6 * 100);
       if (service === "hartmann") amount += 200 * 100;
@@ -23,10 +23,12 @@ exports.handler = async (event) => {
       }
     }
 
-
-
     if (!amount || amount < 50) {
-      return { statusCode: 400, body: JSON.stringify({ error: "Monto inválido." }) };
+      return {
+        statusCode: 400,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ error: "Monto inválido." }),
+      };
     }
 
     const pretty = {
@@ -36,11 +38,20 @@ exports.handler = async (event) => {
       luz: "Paquete Luz",
     };
 
-    const servicesList = [service, ...(addOns || [])].filter(Boolean).map(s => pretty[s] || s);
-    const productName = servicesList.join(" + ");
+    const servicesList = [service, ...(addOns || [])]
+      .filter(Boolean)
+      .map((s) => pretty[s] || s);
+
+    const productName =
+      service === "luz"
+        ? `Paquete Luz - ${clientType || "residencial"}`
+        : servicesList.join(" + ");
 
     // ✅ 2) Return URL dinámico: local o producción
-    const baseUrl = process.env.URL || process.env.DEPLOY_PRIME_URL || "http://localhost:8888";
+    const baseUrl =
+      process.env.URL ||
+      process.env.DEPLOY_PRIME_URL ||
+      "http://localhost:8888";
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -59,7 +70,11 @@ exports.handler = async (event) => {
       customer_email: customer?.email,
       metadata: {
         service: service || "",
-        package: service === "luz" ? "Paquete Luz" : "Individual",
+        clientType: clientType || "residencial",
+        package:
+          service === "luz"
+            ? `Paquete Luz - ${clientType || "residencial"}`
+            : "Individual",
         m2: String(m2 || ""),
         addOns: JSON.stringify(addOns || []),
         name: `${customer?.firstName || ""} ${customer?.lastName || ""}`.trim(),
@@ -73,10 +88,14 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      headers: {"Content-Type": "application/json"}, 
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ clientSecret: session.client_secret }),
     };
   } catch (err) {
-    return { statusCode: 500, headers: {"Content-Type": "application/json"}, body: JSON.stringify({ error: err.message }) };
+    return {
+      statusCode: 500,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: err.message }),
+    };
   }
 };
