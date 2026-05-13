@@ -10,7 +10,7 @@ exports.handler = async (event) => {
     let amount = 0;
 
     if (service === "luz") {
-      amount = 650 * 100;
+      amount = 450 * 100;
     } else {
       if (service === "feng") amount += Math.round(Number(m2 || 0) * 6 * 100);
       if (service === "hartmann") amount += 200 * 100;
