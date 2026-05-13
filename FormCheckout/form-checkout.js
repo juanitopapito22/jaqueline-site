@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function buildRecap({ servicios, m2, customerType }) {
     const PRICES = {
-      residencial: { feng: 6, hartmann: 200, sistemica: 300, luz: 650 },
-      empresarial: { feng: 12, hartmann: 350, sistemica: 500, luz: 1100 },
+      residencial: { feng: 6, hartmann: 200, sistemica: 300, luz: 450 },
+      empresarial: { feng: 12, hartmann: 350, sistemica: 500, luz: 800 },
     };
     const price = PRICES[customerType] || PRICES.residencial;
 
@@ -149,13 +149,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-
     const payload = {
-    customerType, // 👈 AQUÍ VA (nuevo)
+  clientType: customerType,
 
   // service principal
   service: servicios.includes("paquete-luz") ? "luz" : (servicios[0] || ""),
   m2: fd.get("metros"),
+    
 
   // addOns
   addOns: servicios.includes("paquete-luz") ? [] : servicios.slice(1),
